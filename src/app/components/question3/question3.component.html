@@ -1,0 +1,58 @@
+<div class="progress">
+  <div
+    class="progress-bar"
+    role="progressbar"
+    style="width: 25%"
+    aria-valuenow="25"
+    aria-valuemin="0"
+    aria-valuemax="100"
+  >
+    25%
+  </div>
+</div>
+
+<div class="container">
+  <h3>שאלה 3:</h3>
+  <p class="work-pa">
+    על מנת שנוכל לעזור לך לשים את כספך באפיק הנכון, <br />נא לסמן את המקומות בהם
+    יש לך כסף:
+  </p>
+
+  <form #FormInfo="ngForm">
+    <mat-grid-list
+      *ngFor="let o of options"
+      cols="2"
+      rowHeight="fit"
+      style="height: 230px; width: 40%"
+      gutterSize="10px"
+    >
+      <div class="container">
+        <mat-grid-tile
+          *ngIf="o.id !== 8"
+          [ngClass]="{ empty: !o.select, blue: o.select }"
+        >
+          <a (click)="select(o.id)"
+            ><img class="card-img-top" src="{{ o.src }}" alt="" />
+          </a>
+          <h4 class="card-title">{{ o.name }}</h4>
+        </mat-grid-tile>
+      </div>
+
+      <mat-grid-tile *ngIf="o.id == 8">
+        <a (click)="removeAll()"><img src="{{ o.src }}" alt="" /> </a>
+        <h4>{{ o.name }}</h4></mat-grid-tile
+      >
+    </mat-grid-list>
+    <button
+      (click)="send()"
+      type="button"
+      class="btn btn-lg btn-primary"
+      [disabled]="!flag"
+    >
+      לשלב הבא
+    </button>
+    <button (click)="back()" type="button" class="btn btn-lg btn-secondary">
+      אחורה
+    </button>
+  </form>
+</div>
